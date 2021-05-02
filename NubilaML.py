@@ -20,10 +20,10 @@ from QuickRegressors import QuickRegressors
 from ClassifierModels import ClassifierModels
 from RegressorModels import RegressorModels
 
-from Pyspark import Pyspark
-from RegressorsPyspark import RegressorsPyspark
-from ClassifiersPyspark import ClassifiersPyspark
-from ClusteringPyspark import ClusteringPyspark
+#from Pyspark import Pyspark
+#from RegressorsPyspark import RegressorsPyspark
+#from ClassifiersPyspark import ClassifiersPyspark
+#from ClusteringPyspark import ClusteringPyspark
 from TimeSeries import TimeSeries
 from AnomalyDetection import AnomalyDetection
 
@@ -755,21 +755,21 @@ elif modelSelect_name == "Bigdata Analysis":
         selectModelRegressor = st.sidebar.selectbox("Select a model", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
                                                                        "Random Forest Regressor", "Gradient-Boosted Tree Regressor"))
 
-        RegressorsPyspark(selectModelRegressor)
+        #RegressorsPyspark(selectModelRegressor)
 
     elif SelectMethod == "Classification":
         selectModelClassifier = st.sidebar.selectbox("Select a model", ("Decision Tree Classifier", "Logistic Regression Classifier",
                                                                         "Random Forest Classifier", "Navy Bayes Classifier"))
 
-        ClassifiersPyspark(selectModelClassifier)
+        #ClassifiersPyspark(selectModelClassifier)
 
     elif SelectMethod == "Regressor Ranking" or SelectMethod == "Classifier Ranking":
-        Pyspark(SelectMethod)
+        #Pyspark(SelectMethod)
 
     elif SelectMethod == "Clustering":
         selectModelClustering = st.sidebar.selectbox(
             "Select a model", ("K-Means", "Gaussian Mixture"))
-        ClusteringPyspark(selectModelClustering)
+        #ClusteringPyspark(selectModelClustering)
 
 
 elif modelSelect_name == "Time Series":
