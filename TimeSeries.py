@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from datetime import datetime, timedelta
-from fbprophet import Prophet  # Faceebok Library
+#from fbprophet import Prophet  # Faceebok Library
 # https://facebook.github.io/prophet/docs/uncertainty_intervals.html
 import matplotlib.pyplot as plt
 import plotly.express as px
@@ -313,128 +313,9 @@ def TimeSeries():
                 st.write(df2_reconstructed)
 
             if method == "Prophet - Facebook":
+                st.write("Delete")
 
-                # prepare expected column names
-                df2.columns = ['ds', 'y']
-                df2['ds'] = pd.to_datetime(df2['ds'])
-                # define the model
-                model = Prophet()
-                # fit the model
-
-                model = Prophet(interval_width=UncInt)
-
-                model.fit(df2)
-
-                # define the period for which we want a prediction
-                """
-                    future = list()
-                    for i in range(1, 13):
-                        date = '1968-%02d' % i
-                        future.append([date])
-                    future = DataFrame(future)
-                    future.columns = ['ds']
-                    future['ds'] = to_datetime(future['ds'])
-                    """
-
-                st.subheader("""**Training**""")
-                future = list()
-                future = df2.iloc[:, 0]
-                future = DataFrame(future)
-                # future.columns = ['ds']
-                # future['ds'] = to_datetime(future['ds'])
-                forecast = model.predict(future)
-                # st.write(forecast)
-
-                # forecast = model.predict(df2.iloc[:, 0])
-                # summarize the forecast
-                # st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
-                st.set_option('deprecation.showPyplotGlobalUse', False)
-                # plot forecast
-                fig, ax = plt.subplots()
-                ax = model.plot(forecast)
-                # st.write(ax)
-                plt.xlabel('Date', fontsize=17)
-                plt.ylabel(columSelectY, fontsize=17)
-                plt.title('Time Series - Training', fontsize=20)
-                st.pyplot()
-
-                # df.sort_index(inplace=True)
-                # Multiplicative Decomposition
-
-                # calculate MAE between expected and predicted values for december
-                y_true = df2['y'].values
-                y_pred = forecast['yhat'].values
-
-                col1, col2 = st.beta_columns(2)
-
-                with col1:
-                    mae = mean_absolute_error(y_true, y_pred)
-                    st.success('Mean Absolute Error: %.4f' % mae)
-                with col2:
-                    mape = mean_absolute_percentage_error(y_true, y_pred)
-                    st.success('Mean Absolute Percentage Error: %.3f' % mape)
-
-                # plot expected vs actual
-                # st.write(df2)
-                dfPredChart = DataFrame()
-                dfPredChart[columSelectX] = df2['ds']
-                dfPredChart[columSelectY] = df2['y'].values
-                dfPredChart['Predicted'] = forecast['yhat'].values
-
-                dfPredChart.set_index(columSelectX, inplace=True)
-                ax = dfPredChart[[columSelectY, 'Predicted']].plot(
-                    figsize=(12, 8))
-                ax.grid(b=True, which='major',
-                        color='lightgrey', linestyle='-')
-                st.pyplot()
-                st.write(dfPredChart)
-
-                """
-                st.set_option('deprecation.showPyplotGlobalUse', False)
-                # plt.plot(y_true, label=columSelectY)
-                # plt.plot(y_pred, label='Predicted')
-                # plt.xlabel('Date', fontsize=15)
-                # plt.ylabel(columSelectY, fontsize=17)
-                plt.legend()
-                st.pyplot()
-                """
-
-                # define the period for which we want a prediction
-                """
-                future = list()
-                for i in range(1, 13):
-                    date = '1969-%02d' % i
-                    future.append([date])
-                future = DataFrame(future)
-                future.columns = ['ds']
-                future['ds'] = to_datetime(future['ds'])
-                """
-
-                st.subheader("""**Prediction**""")
-                # use the model to make a forecast
-                years = st.number_input(
-                    'Select a period prediction', min_value=1, value=3)
-                future = model.make_future_dataframe(
-                    periods=years*12, freq='MS')
-                forecast = model.predict(future)
-
-                # summarize the forecast
-                st.set_option('deprecation.showPyplotGlobalUse', False)
-                # plot forecast
-                fig, ax = plt.subplots()
-                model.plot(forecast)
-                plt.xlabel('Date', fontsize=17)
-                plt.ylabel(columSelectY, fontsize=17)
-                plt.title('Time Series - Prediction', fontsize=20)
-                st.pyplot()
-                st.subheader("""**Results**""")
-                st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
-
-                model.plot_components(forecast)
-                st.pyplot()
-
-                # plt.plot(forecast['Date'], forecast['furniture_trend'], 'b-')
-
+                
             elif method == "SARIMA":
 
                 st.subheader("""**Training**""")
