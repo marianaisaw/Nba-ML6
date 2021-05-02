@@ -6,9 +6,9 @@ from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, r2_score
 from SLR import SLR
 from RFR import RFR
-from SVMC import SVMC
-from NBC import NBC
-from KNN import KNNC
+#from SVMC import SVMC
+#from NBC import NBC
+#from KNN import KNNC
 from RFC import RFC
 from PRM import PRM
 from MRFR import MRFR
