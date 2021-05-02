@@ -755,21 +755,21 @@ elif modelSelect_name == "Bigdata Analysis":
         selectModelRegressor = st.sidebar.selectbox("Select a model", ("Linear Regressor", "Generalized Linear Regressor", "Decision Tree Regressor",
                                                                        "Random Forest Regressor", "Gradient-Boosted Tree Regressor"))
 
-        #RegressorsPyspark(selectModelRegressor)
+        st.write("RegressorsPyspark(selectModelRegressor)")
 
     elif SelectMethod == "Classification":
         selectModelClassifier = st.sidebar.selectbox("Select a model", ("Decision Tree Classifier", "Logistic Regression Classifier",
                                                                         "Random Forest Classifier", "Navy Bayes Classifier"))
 
-        #ClassifiersPyspark(selectModelClassifier)
+        st.write("ClassifiersPyspark(selectModelClassifier)")
 
     elif SelectMethod == "Regressor Ranking" or SelectMethod == "Classifier Ranking":
-        #Pyspark(SelectMethod)
+        st.write("Pyspark(SelectMethod)")
 
     elif SelectMethod == "Clustering":
         selectModelClustering = st.sidebar.selectbox(
             "Select a model", ("K-Means", "Gaussian Mixture"))
-        #ClusteringPyspark(selectModelClustering)
+        st.write("ClusteringPyspark(selectModelClustering)")
 
 
 elif modelSelect_name == "Time Series":
