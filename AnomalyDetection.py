@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import datetime, timedelta
-from fbprophet import Prophet  # Faceebok Library
+#from fbprophet import Prophet  # Faceebok Library
 import pandas as pd
 from pandas import to_datetime
 import numpy as np
@@ -162,85 +162,10 @@ def AnomalyDetection():
             st.write(dfChart)
 
         elif method == "Prophet - Facebook":
+            
+            "Prophet - Facebook"
 
-            # prepare expected column names
-            df2.columns = ['ds', 'y']
-            df2['ds'] = to_datetime(df2['ds'])
-            # define the model
-            model = Prophet()
-            # fit the model
-
-            model = Prophet(interval_width=UncInt)
-
-            model.fit(df2)
-            st.subheader("""**Training**""")
-            future = list()
-            future = df2.iloc[:, 0]
-            future = DataFrame(future)
-            # future.columns = ['ds']
-            # future['ds'] = to_datetime(future['ds'])
-            forecast = model.predict(future)
-            # st.write(forecast)
-
-            # forecast = model.predict(df2.iloc[:, 0])
-            # summarize the forecast
-            # st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
-            st.set_option('deprecation.showPyplotGlobalUse', False)
-            # plot forecast
-            fig, ax = plt.subplots()
-            ax = model.plot(forecast)
-            # st.write(ax)
-            plt.xlabel('Date', fontsize=17)
-            plt.ylabel(columSelectY, fontsize=17)
-            plt.title('Time Series - Training', fontsize=20)
-            st.pyplot()
-
-            # calculate MAE between expected and predicted values for december
-            y_true = df2['y'].values
-            y_pred = forecast['yhat'].values
-
-            col1, col2 = st.beta_columns(2)
-
-            with col1:
-                mae = mean_absolute_error(y_true, y_pred)
-                st.success('Mean Absolute Error: %.4f' % mae)
-            with col2:
-                mape = mean_absolute_percentage_error(y_true, y_pred)
-                st.success('Mean Absolute Percentage Error: %.3f' % mape)
-
-            # plot expected vs actual
-            # st.write(df2)
-            dfPredChart = DataFrame()
-            dfPredChart[columSelectX] = df2['ds']
-            dfPredChart[columSelectY] = df2['y'].values
-            dfPredChart['Predicted'] = forecast['yhat'].values
-            dfPredChart['yhat_lower'] = forecast['yhat_lower'].values
-            dfPredChart['yhat_upper'] = forecast['yhat_upper'].values
-
-            dfPredChart.set_index(columSelectX, inplace=True)
-            ax = dfPredChart[[columSelectY, 'Predicted']].plot(figsize=(12, 8))
-            ax.grid(b=True, which='major', color='lightgrey', linestyle='-')
-            st.pyplot()
-
-            dfPredChart["anomaly"] = dfPredChart.apply(lambda row: row[columSelectY] if (
-                row[columSelectY] <= row["yhat_lower"] or row[columSelectY] >= row["yhat_upper"]) else 0, axis=1)
-
-            dfPredChart["anomaly_"] = dfPredChart.apply(
-                lambda row: -1 if (row[columSelectY] <= row["yhat_lower"]) else (1 if (row[columSelectY] >= row["yhat_upper"]) else 0), axis=1)
-
-            ax = dfPredChart[['yhat_lower', 'yhat_upper', 'anomaly']].plot(
-                figsize=(12, 8), color=['darkorange', 'green', 'red'])
-            ax.grid(b=True, which='major', color='lightgrey', linestyle='-')
-
-            st.pyplot()
-
-            ax = dfPredChart[['anomaly_']].plot(figsize=(12, 8), color=['red'])
-            ax.grid(b=True, which='major', color='lightgray', linestyle='-')
-            st.pyplot()
-
-            st.write(dfPredChart)
-
-            # st.write(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
+            
 
         elif method == "SARIMA":
 
