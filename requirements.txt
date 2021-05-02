@@ -34,7 +34,7 @@ shap==0.38.1
 slicer==0.0.7
 
 #Prophet - Facebook
-fbprophet==0.7.1
+#fbprophet==0.7.1
 
 #SARIMA
 statsmodels==0.12.2
