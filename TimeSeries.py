@@ -313,7 +313,7 @@ def TimeSeries():
                 st.write(df2_reconstructed)
 
             if method == "Prophet - Facebook":
-                st.write("Delete")
+                st.write("Prophet - Facebook")
 
                 
             elif method == "SARIMA":
