@@ -806,7 +806,7 @@ elif modelSelect_name == "Bigdata Analysis":
 
                         """)
 
-        RegressorsPyspark(selectModelRegressor)
+        #RegressorsPyspark(selectModelRegressor)
 
     elif SelectMethod == "Classification":
         st.write("""
@@ -844,7 +844,7 @@ elif modelSelect_name == "Bigdata Analysis":
 
                         """)
 
-        ClassifiersPyspark(selectModelClassifier)
+        #ClassifiersPyspark(selectModelClassifier)
 
     elif SelectMethod == "Regressor Ranking" or SelectMethod == "Classifier Ranking":
 
@@ -859,7 +859,7 @@ elif modelSelect_name == "Bigdata Analysis":
 
         """)
 
-        Pyspark(SelectMethod)
+        #Pyspark(SelectMethod)
 
     elif SelectMethod == "Clustering":
         st.write("""
@@ -882,7 +882,7 @@ elif modelSelect_name == "Bigdata Analysis":
                         ### **Gaussian Mixture Clustering Model**
 
                         """)
-        ClusteringPyspark(selectModelClustering)
+        #ClusteringPyspark(selectModelClustering)
 
 
 elif modelSelect_name == "Time Series":
